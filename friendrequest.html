@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey 😊</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#yes:hover {
+  transform: scale(1.1);
+}
+
+#no {
+  background: #ddd;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.heart {
+  position: absolute;
+  animation: float 4s linear infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+  <h1>Hey Wedad 😊</h1>
+  <p>I made something for you...</p>
+  <p>I think you're really cool 💖</p>
+  <h2>Can we be friends?</h2>
+
+  <div class="buttons">
+    <button id="yes" onclick="sayYes()">Yes 😄</button>
+    <button id="no" onmouseover="moveNo()">Not sure 😅</button>
+  </div>
+</div>
+
+<script>
+function sayYes() {
+  const gifURL = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJlam9pcnppOTd2bzd6ZXZyb2owdjNkZW0wMWVza2JxZmxleGdjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gPKXsLUHCCTZQKvPJf/giphy.gif";
+
+  document.getElementById('main').innerHTML = `
+    <div style="animation: fadeIn 1s ease;">
+      <img src="${gifURL}" style="max-width:90%; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+      <h2 style="margin-top:20px;"></h2>
+    </div>
+  `;
+
+  for (let i = 0; i < 25; i++) {
+    createHeart();
+  }
+}
+
+function moveNo() {
+  const btn = document.getElementById('no');
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+
+  btn.style.position = 'absolute';
+  btn.style.left = x + 'px';
+  btn.style.top = y + 'px';
+}
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 4000);
+}
+</script>
+
+</body>
+</html>
